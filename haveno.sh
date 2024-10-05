@@ -4,15 +4,12 @@
 clear
 echo "===================================================="
 echo "██╗  ██╗ █████╗ ██╗   ██╗███████╗███╗   ██╗ ██████╗ "   
-echo "██║  ██║██╔══██╗██║   ██║██╔════╝████╗  ██║██╔════╝ "   
-echo "███████║███████║██║   ██║█████╗  ██╔██╗ ██║██║  ███╗"
+echo "██║  ██║██╔══██╗██║   ██║██╔════╝████╗  ██║██╔═══██╗"   
+echo "███████║███████║██║   ██║█████╗  ██╔██╗ ██║██║   ██║"
 echo "██╔══██║██╔══██║██║   ██║██╔══╝  ██║╚██╗██║██║   ██║"
 echo "██║  ██║██║  ██║╚██████╔╝███████╗██║ ╚████║╚██████╔╝"
 echo "╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝ "
 echo "===================================================="
-echo "Starting installation... Hacker Mode: ON"
-echo "===================================================="
-
 # Function for logging
 logfile="install_haveno.log"
 echo "Installation log - $(date)" > $logfile
@@ -64,17 +61,7 @@ fi
 progress_bar 60
 sleep 1
 
-# Step 4: Set execute permissions on the .deb file
-log_info "Setting permissions for Haveno .deb file..."
-sudo chmod +x haveno_amd64_deb-latest.deb &>> $logfile
-if [ $? -ne 0 ]; then
-  log_error "Failed to set permissions!"
-  exit 1
-fi
-progress_bar 80
-sleep 1
-
-# Step 5: Install Haveno using dpkg
+# Step 4: Install Haveno using dpkg
 log_info "Installing Haveno package..."
 sudo dpkg -i haveno_amd64_deb-latest.deb &>> $logfile
 if [ $? -ne 0 ]; then
@@ -85,6 +72,9 @@ progress_bar 100
 sleep 1
 
 # Final message
+echo "===================================================="
+echo "Installation Complete! You can find Haveno under Internet -> Haveno."
+echo "Check the log file ($logfile) for details."
 echo "===================================================="
 echo "Installation Complete! You can find Haveno under Internet -> Haveno."
 echo "Check the log file ($logfile) for details."
